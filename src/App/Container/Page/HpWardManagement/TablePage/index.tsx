@@ -48,7 +48,10 @@ const App: React.FC<Props> = ({
                         deleteUserOneRow(record.wardId)
                     }
                 )}
-                dataSource={data.map((item) => ({ ...item, key: nanoid() }))}
+                dataSource={data.map((item) => ({
+                    ...item,
+                    key: item.wardId as string,
+                }))}
             />
         </div>
     )

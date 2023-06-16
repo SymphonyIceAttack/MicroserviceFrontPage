@@ -40,7 +40,6 @@ const index = (props: Props) => {
             {/* 这个是table本身 */}
             <TablePage
                 data={res == null ? [] : res}
-                SelectedRowKeys={selectedRowKeys}
                 saveSelectedRowKeys={(SelectedRowKeys) => {
                     setSelectedRowKeys(SelectedRowKeys)
                 }}

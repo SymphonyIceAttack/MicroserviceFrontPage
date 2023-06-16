@@ -4,17 +4,7 @@ import path from 'path'
 import vitePluginImp from 'vite-plugin-imp'
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        react(),
-        vitePluginImp({
-            libList: [
-                {
-                    libName: 'antd',
-                    style: (name) => `antd/es/${name}/style`,
-                },
-            ],
-        }),
-    ],
+    plugins: [react()],
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
