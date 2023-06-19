@@ -14,7 +14,7 @@ type Props = {}
 const index = (props: Props) => {
     const [data, setData] = useState(null)
     const [FilterParams, setFilterParams] = useState<FilterFormType>(null)
-    const [loading, res] = useCustomFetch(FilterParams) //
+    const [loading, res, setLoading] = useCustomFetch(FilterParams) //
 
     //TODO getALLList
     const [isModalShow, setisModalShow] = CreateModalHook()
@@ -32,6 +32,9 @@ const index = (props: Props) => {
             />
             {/* 这个是Table的增删改查 */}
             <CRUDbuttonList
+                setLoading={() => {
+                    setLoading(true)
+                }}
                 openModal={() => {
                     setisModalShow(true)
                 }}
@@ -39,6 +42,10 @@ const index = (props: Props) => {
             />
             {/* 这个是table本身 */}
             <TablePage
+                setLoading={() => {
+                    setLoading(true)
+                }}
+                loading={loading}
                 data={res == null ? [] : res}
                 SelectedRowKeys={selectedRowKeys}
                 saveSelectedRowKeys={(SelectedRowKeys) => {
@@ -56,6 +63,9 @@ const index = (props: Props) => {
             />
             {/* 这个是弹出框 */}
             <CreateDialog
+                setLoading={() => {
+                    setLoading(true)
+                }}
                 selectRowKey={selectRowKey}
                 isModalShow={isModalShow}
                 isEdite={isEdite}

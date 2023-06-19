@@ -12,6 +12,8 @@ interface Props {
     SelectedRowKeys: React.Key[]
     SetModal: (isModalShow: boolean) => void
     SetEdite: (isEdite: boolean) => void
+    loading: boolean
+    setLoading: () => void
 }
 
 const App: React.FC<Props> = ({
@@ -21,9 +23,9 @@ const App: React.FC<Props> = ({
     SelectedRowKeys,
     SetModal,
     SetEdite,
+    loading,
+    setLoading,
 }) => {
-    const [loading, setLoading] = useState(false)
-
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
         saveSelectedRowKeys(newSelectedRowKeys)
     }
@@ -36,6 +38,7 @@ const App: React.FC<Props> = ({
     return (
         <div style={{ marginTop: '20px' }}>
             <Table
+                loading={loading}
                 rowSelection={rowSelection}
                 columns={columns(
                     (value, record) => {
@@ -46,6 +49,7 @@ const App: React.FC<Props> = ({
                     (value, record) => {
                         //TODO deleteOneRow
                         deleteUserOneRow(record.doctorId)
+                        setLoading()
                     }
                 )}
                 dataSource={data.map((item) => ({

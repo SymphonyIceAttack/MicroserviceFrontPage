@@ -10,9 +10,14 @@ import { deleteUserMuRow } from '../Api'
 type Props = {
     openModal: () => void
     SelectedRowKeys: React.Key[]
+    setLoading: () => void
 }
 
-const index: React.FC<Props> = ({ openModal, SelectedRowKeys }: Props) => {
+const index: React.FC<Props> = ({
+    openModal,
+    SelectedRowKeys,
+    setLoading,
+}: Props) => {
     return (
         <Space>
             <Button
@@ -36,6 +41,7 @@ const index: React.FC<Props> = ({ openModal, SelectedRowKeys }: Props) => {
                 icon={<DeleteFilled />}
                 onClick={() => {
                     //TODO deleteALLRow
+                    setLoading()
                     deleteUserMuRow(SelectedRowKeys)
                 }}>
                 删除

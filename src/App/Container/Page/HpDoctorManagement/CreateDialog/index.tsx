@@ -9,6 +9,7 @@ interface Props {
     SetModal: (isModalShow: boolean) => void
     SetEdite: (isEdite: boolean) => void
     selectRowKey: null | React.Key
+    setLoading: () => void
 }
 type formDataType = Pick<
     ReadHpDoctorManagementFormDataType,
@@ -20,6 +21,7 @@ const App: React.FC<Props> = ({
     SetEdite,
     isEdite,
     selectRowKey,
+    setLoading,
 }) => {
     const uniqueForm = useMemo(() => nanoid(), [])
     const [form] = Form.useForm<formDataType>()
@@ -29,10 +31,12 @@ const App: React.FC<Props> = ({
         console.log(selectRowKey)
         //TODO editeOneRow
         if (isEdite) {
+            setLoading()
             editUserOneRow({ doctorId: selectRowKey!, ...value })
         } else {
             //TODO addOneRow
-            addUserOneRow({  ...value })
+            setLoading()
+            addUserOneRow({ ...value })
             console.log(value)
         }
     }
