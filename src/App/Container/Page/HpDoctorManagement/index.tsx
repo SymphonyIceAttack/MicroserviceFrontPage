@@ -14,7 +14,7 @@ type Props = {}
 const index = (props: Props) => {
     const [data, setData] = useState(null)
     const [FilterParams, setFilterParams] = useState<FilterFormType>(null)
-    const res = useCustomFetch(FilterParams) //
+    const [loading, res] = useCustomFetch(FilterParams) //
 
     //TODO getALLList
     const [isModalShow, setisModalShow] = CreateModalHook()

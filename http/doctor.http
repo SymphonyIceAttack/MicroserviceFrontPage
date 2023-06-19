@@ -1,0 +1,25 @@
+POST http://localhost:8080/hms1/doctor HTTP/1.1
+content-type: application/json
+
+{
+    "doctorId": "110023",
+    "fullName": "yyyyy",
+    "specialty":"xxxxx",
+    "qualification":"ssssx"
+}
+
+
+###
+PUT http://localhost:8080/hms1/doctor HTTP/1.1
+content-type: application/json
+
+{
+    "doctorId": "110001",
+    "fullName": "yyyyy",
+    "specialty":"xxxxx",
+    "qualification":"ssssx"
+}
+###
+DELETE  http://localhost:8080/hms1/doctor/110023 HTTP/1.1
+content-type: application/json
+

@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { getAllUsrList } from '../Api'
 import type { FilterFormType } from '../FilterForm'
 import { ReadHpDoctorManagementFormDataType } from '../types'
-export function useCustomFetch(FilterParams: FilterFormType) {
+export function useCustomFetch(FilterParams: FilterFormType): [typeof loading,typeof data] {
     // 传入一个真正获取数据的函数
     const [data, setData] = useState<
         ReadHpDoctorManagementFormDataType[] | null
@@ -25,12 +25,12 @@ export function useCustomFetch(FilterParams: FilterFormType) {
             .finally(() => {
                 setLoading(false)
             })
-    }, [])
+    }, [loading])
 
     // 这里会在获取到数据之后才会置为 false，也就是才会返回数据
     if (loading) {
         throw Promise.resolve(null) // 这里抛出一个 Promise
     } else {
-        return data
+        return [loading, data]
     }
 }
